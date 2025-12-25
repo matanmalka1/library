@@ -1,0 +1,57 @@
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-title {
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.book-author {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.book-desc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.book-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.book-genre {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.book-pages {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.book-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.book-actions {
+  display: flex;
+  gap: 0.5rem;
+}
