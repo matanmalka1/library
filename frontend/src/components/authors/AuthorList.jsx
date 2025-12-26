@@ -1,4 +1,4 @@
-import AuthorCard from "./AuthorCard";
+import AuthorCard from "./AuthorCard.jsx";
 
 const AuthorList = ({ authors, onEdit, onDelete, canEdit }) => {
   if (!authors || authors.length === 0) {

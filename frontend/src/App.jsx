@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import ProtectedRoute from "./components/common/ProtectedRoute";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Books from "./pages/Books";
-import Authors from "./pages/Authors";
-import Customers from "./pages/Customers";
-import NotFound from "./pages/NotFound";
+import Header from "./components/layout/Header/Header.jsx";
+import Footer from "./components/layout/Footer/Footer.jsx";
+import ProtectedRoute from "./components/common/ProtectedRoute.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Books from "./pages/Books/Books.jsx";
+import Authors from "./pages/Auth/Authors.jsx";
+import Customers from "./pages/Customers.jsx";
+import NotFound from "./pages/NouFound/NotFound.jsx";
 
 function App() {
   return (

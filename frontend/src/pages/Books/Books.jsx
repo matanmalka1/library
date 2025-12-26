@@ -5,13 +5,13 @@ import {
   addBook,
   modifyBook,
   removeBook,
-} from '../store/slices/booksSlice'
-import { useAuth } from '../hooks/useAuth'
-import BookList from '../components/books/BookList'
-import BookForm from '../components/books/BookForm'
-import Button from '../components/common/Button'
-import Modal from '../components/common/Modal'
-import Loading from '../components/common/Loading'
+} from '../../store/slices/booksSlice.js'
+import { useAuth } from '../../hooks/useAuth.js'
+import BookList from '../../components/books/BookList.jsx'
+import BookForm from '../../components/books/BookForm.jsx'
+import Button from '../../components/common/Button/Button.jsx'
+import Modal from '../../components/common/Modal/Modal.jsx'
+import Loading from '../../components/common/Loading/Loading.jsx'
 import './Books.css'
 
 const Books = () => {

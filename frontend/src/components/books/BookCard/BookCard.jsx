@@ -1,6 +1,6 @@
-import Card from "../common/Card";
-import Button from "../common/Button";
-import { formatDate, truncateText } from "../../utils/helpers";
+import Card from "../../common/Card/Card.jsx";
+import Button from "../../common/Button/Button.jsx";
+import { formatDate, truncateText } from "../../../utils/helpers.js";
 import "./BookCard.css";
 
 const BookCard = ({ book, onEdit, onDelete, canEdit }) => {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Button from "../components/common/Button";
-import Card from "../components/common/Card";
+import Button from "../../components/common/Button/Button.jsx";
+import Card from "../../components/common/Card/Card.jsx";
 import "./Home.css";
 
 const Home = () => {

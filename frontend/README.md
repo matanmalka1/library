@@ -1,6 +1,6 @@
 # 📚 Library Management Frontend
 
-A modern React frontend for the Library Management System built with **React 18**, **Vite**, and **React Router**.
+A modern React frontend for the Library Management System built with **React 19**, **Vite**, and **React Router**.
 
 ## 🚀 Features
 
@@ -10,14 +10,16 @@ A modern React frontend for the Library Management System built with **React 18*
 - Protected Routes
 - Responsive Design
 - Clean Component Architecture
-- Context API for State Management
+- Redux Toolkit for State Management
 
 ## 📦 Tech Stack
 
-- React 18
+- React 19
 - Vite
 - React Router DOM
+- Redux Toolkit
 - Axios
+- Notyf (Toast Notifications)
 - CSS3
 
 ## ⚙️ Prerequisites
@@ -73,7 +75,7 @@ npm run preview
 src/
 ├── api/          # API calls and axios configuration
 ├── components/   # Reusable UI components
-├── context/      # React Context for global state
+├── store/        # Redux store and slices
 ├── hooks/        # Custom React hooks
 ├── pages/        # Page components
 ├── utils/        # Helper functions and constants

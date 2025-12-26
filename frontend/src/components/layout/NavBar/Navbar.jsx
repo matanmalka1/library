@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import Button from "../common/Button";
+import { useAuth } from "../../../hooks/useAuth.js";
+import Button from "../../common/Button/Button.jsx";
 import "./Navbar.css";
 
 const Navbar = () => {

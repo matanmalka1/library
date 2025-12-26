@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import * as authorsApi from '../../api/authors'
-import { showNotification } from '../../utils/notifications'
+import * as authorsApi from '../../api/authors.js'
+import { showNotification } from '../../utils/notifications.js'
 
 export const fetchAuthors = createAsyncThunk(
   'authors/fetchAll',

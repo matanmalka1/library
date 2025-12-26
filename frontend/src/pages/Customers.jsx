@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCustomers } from '../store/slices/customersSlice'
-import CustomerList from '../components/customers/CustomerList'
-import Loading from '../components/common/Loading'
+import { fetchCustomers } from '../store/slices/customersSlice.js'
+import CustomerList from '../components/customers/CustomerList.jsx'
+import Loading from '../components/common/Loading/Loading.jsx'
 
 const Customers = () => {
   const dispatch = useDispatch()

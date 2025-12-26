@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Input from "../common/Input";
-import Button from "../common/Button";
+import Input from "../common/Input/Input.jsx";
+import Button from "../common/Button/Button.jsx";
 
 const BookForm = ({ book, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({

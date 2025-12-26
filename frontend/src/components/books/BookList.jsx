@@ -1,4 +1,4 @@
-import BookCard from "./BookCard";
+import BookCard from "./BookCard/BookCard.jsx";
 
 const BookList = ({ books, onEdit, onDelete, canEdit }) => {
   if (!books || books.length === 0) {

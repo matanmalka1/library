@@ -1,5 +1,5 @@
-import api from "./axios";
-import { API_ENDPOINTS } from "../utils/constants";
+import api from "./axios.js";
+import { API_ENDPOINTS } from "../utils/constants.js";
 
 export const login = async (email, password) => {
   const response = await api.post(API_ENDPOINTS.LOGIN, { email, password });

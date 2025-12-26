@@ -1,6 +1,6 @@
-import Card from "../common/Card";
-import Button from "../common/Button";
-import { getInitials } from "../../utils/helpers";
+import Card from "../common/Card/Card.jsx";
+import Button from "../common/Button/Button.jsx";
+import { getInitials } from "../../utils/helpers.js";
 import "./AuthorCard.css";
 
 const AuthorCard = ({ author, onEdit, onDelete, canEdit }) => {

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import * as booksApi from '../../api/books'
-import { showNotification } from '../../utils/notifications'
+import * as booksApi from '../../api/books.js'
+import { showNotification } from '../../utils/notifications.js'
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchAll',

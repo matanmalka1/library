@@ -1,4 +1,4 @@
-import CustomerCard from "./CustomerCard";
+import CustomerCard from "./CustomerCard.jsx";
 
 const CustomerList = ({ customers }) => {
   if (!customers || customers.length === 0) {

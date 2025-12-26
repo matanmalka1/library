@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { registerUser, clearError } from '../store/slices/authSlice'
-import RegisterForm from '../components/auth/RegisterForm'
-import Card from '../components/common/Card'
-import './Auth.css'
+import { registerUser, clearError } from '../store/slices/authSlice.js'
+import RegisterForm from '../components/auth/RegisterForm.jsx'
+import Card from '../components/common/Card/Card.jsx'
+import './Auth/Auth.css'
 
 const Register = () => {
   const dispatch = useDispatch()

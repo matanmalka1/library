@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import * as authApi from '../../api/auth'
-import { AUTH_TOKEN_KEY } from '../../utils/constants'
-import { showNotification } from '../../utils/notifications'
+import * as authApi from '../../api/auth.js'
+import { AUTH_TOKEN_KEY } from '../../utils/constants.js'
+import { showNotification } from '../../utils/notifications.js'
 
 export const loginUser = createAsyncThunk(
   'auth/login',

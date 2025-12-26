@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, clearError } from '../store/slices/authSlice'
-import LoginForm from '../components/auth/LoginForm'
-import Card from '../components/common/Card'
-import './Auth.css'
+import { loginUser, clearError } from '../store/slices/authSlice.js'
+import LoginForm from '../components/auth/LoginForm.jsx'
+import Card from '../components/common/Card/Card.jsx'
+import './Auth/Auth.css'
 
 const Login = () => {
   const dispatch = useDispatch()

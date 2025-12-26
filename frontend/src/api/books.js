@@ -1,5 +1,5 @@
-import api from "./axios";
-import { API_ENDPOINTS } from "../utils/constants";
+import api from "./axios.js";
+import { API_ENDPOINTS } from "../utils/constants.js";
 
 export const getAllBooks = async () => {
   const response = await api.get(API_ENDPOINTS.BOOKS);
