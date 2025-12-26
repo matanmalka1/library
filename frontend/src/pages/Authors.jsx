@@ -1,51 +1,47 @@
-import { useState } from "react";
-import { useApi } from "../hooks/useApi";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  getAllAuthors,
-  createAuthor,
-  updateAuthor,
-  deleteAuthor,
-} from "../api/authors";
-import { useAuth } from "../hooks/useAuth";
-import AuthorList from "../components/authors/AuthorList.jsx";
-import AuthorForm from "../components/authors/AuthorForm";
-import Button from "../components/common/Button";
-import Modal from "../components/common/Modal";
-import Loading from "../components/common/Loading";
+  fetchAuthors,
+  addAuthor,
+  modifyAuthor,
+  removeAuthor,
+} from '../store/slices/authorsSlice'
+import { useAuth } from '../hooks/useAuth'
+import AuthorList from '../components/authors/AuthorList'
+import AuthorForm from '../components/authors/AuthorForm'
+import Button from '../components/common/Button'
+import Modal from '../components/common/Modal'
+import Loading from '../components/common/Loading'
 
 const Authors = () => {
-  const { isAuthenticated } = useAuth();
-  const {
-    data: authors,
-    loading,
-    error,
-    execute,
-    setData,
-  } = useApi(getAllAuthors);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingAuthor, setEditingAuthor] = useState(null);
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useAuth()
+  const { items: authors, loading, error } = useSelector((state) => state.authors)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editingAuthor, setEditingAuthor] = useState(null)
+
+  useEffect(() => {
+    dispatch(fetchAuthors())
+  }, [dispatch])
 
   const handleCreate = async (authorData) => {
-    const newAuthor = await createAuthor(authorData);
-    setData([...authors, newAuthor]);
-    setIsModalOpen(false);
-  };
+    await dispatch(addAuthor(authorData))
+    setIsModalOpen(false)
+  }
 
   const handleUpdate = async (id, authorData) => {
-    await updateAuthor(id, authorData);
-    await execute();
-    setEditingAuthor(null);
-  };
+    await dispatch(modifyAuthor({ id, authorData }))
+    setEditingAuthor(null)
+  }
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this author?")) {
-      await deleteAuthor(id);
-      setData(authors.filter((a) => a.AuthorID !== id));
+    if (window.confirm('Are you sure you want to delete this author?')) {
+      await dispatch(removeAuthor(id))
     }
-  };
+  }
 
-  if (loading) return <Loading />;
-  if (error) return <div className="error-alert">{error}</div>;
+  if (loading && !authors.length) return <Loading />
+  if (error) return <div className="error-alert">{error}</div>
 
   return (
     <div className="books-page">
@@ -63,15 +59,8 @@ const Authors = () => {
         canEdit={isAuthenticated}
       />
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Add New Author"
-      >
-        <AuthorForm
-          onSubmit={handleCreate}
-          onCancel={() => setIsModalOpen(false)}
-        />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Add New Author">
+        <AuthorForm onSubmit={handleCreate} onCancel={() => setIsModalOpen(false)} />
       </Modal>
 
       <Modal
@@ -86,7 +75,7 @@ const Authors = () => {
         />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default Authors;
+export default Authors

@@ -1,28 +1,28 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { register } from "../api/auth";
-import RegisterForm from "../components/auth/RegisterForm";
-import Card from "../components/common/Card";
-import { handleApiError } from "../utils/helpers";
-import "./Auth.css";
+import { useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser, clearError } from '../store/slices/authSlice'
+import RegisterForm from '../components/auth/RegisterForm'
+import Card from '../components/common/Card'
+import './Auth.css'
 
 const Register = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { loading, error } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError())
+    }
+  }, [dispatch])
 
   const handleSubmit = async (formData) => {
-    try {
-      setLoading(true);
-      setError("");
-      await register(formData);
-      navigate("/login");
-    } catch (err) {
-      setError(handleApiError(err));
-    } finally {
-      setLoading(false);
+    const result = await dispatch(registerUser(formData))
+    if (!result.error) {
+      navigate('/login')
     }
-  };
+  }
 
   return (
     <div className="auth-page">
@@ -36,7 +36,7 @@ const Register = () => {
         </p>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

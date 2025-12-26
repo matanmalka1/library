@@ -1,31 +1,31 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { login } from "../api/auth";
-import { useAuth } from "../hooks/useAuth";
-import LoginForm from "../components/auth/LoginForm";
-import Card from "../components/common/Card";
-import { handleApiError } from "../utils/helpers";
-import "./Auth.css";
+import { useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, clearError } from '../store/slices/authSlice'
+import LoginForm from '../components/auth/LoginForm'
+import Card from '../components/common/Card'
+import './Auth.css'
 
 const Login = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const { login: authLogin } = useAuth();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
 
-  const handleSubmit = async (formData) => {
-    try {
-      setLoading(true);
-      setError("");
-      const data = await login(formData.email, formData.password);
-      authLogin(data.token);
-      navigate("/");
-    } catch (err) {
-      setError(handleApiError(err));
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
     }
-  };
+  }, [isAuthenticated, navigate])
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError())
+    }
+  }, [dispatch])
+
+  const handleSubmit = (formData) => {
+    dispatch(loginUser(formData))
+  }
 
   return (
     <div className="auth-page">
@@ -39,7 +39,7 @@ const Login = () => {
         </p>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

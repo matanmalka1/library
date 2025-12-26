@@ -1,13 +1,19 @@
-import { useApi } from "../hooks/useApi";
-import { getAllCustomers } from "../api/customers";
-import CustomerList from "../components/customers/CustomerList";
-import Loading from "../components/common/Loading";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCustomers } from '../store/slices/customersSlice'
+import CustomerList from '../components/customers/CustomerList'
+import Loading from '../components/common/Loading'
 
 const Customers = () => {
-  const { data: customers, loading, error } = useApi(getAllCustomers);
+  const dispatch = useDispatch()
+  const { items: customers, loading, error } = useSelector((state) => state.customers)
 
-  if (loading) return <Loading />;
-  if (error) return <div className="error-alert">{error}</div>;
+  useEffect(() => {
+    dispatch(fetchCustomers())
+  }, [dispatch])
+
+  if (loading) return <Loading />
+  if (error) return <div className="error-alert">{error}</div>
 
   return (
     <div className="books-page">
@@ -16,7 +22,7 @@ const Customers = () => {
       </div>
       <CustomerList customers={customers} />
     </div>
-  );
-};
+  )
+}
 
-export default Customers;
+export default Customers

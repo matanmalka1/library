@@ -1,10 +1,17 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../store/slices/authSlice'
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
+  const dispatch = useDispatch()
+  const { isAuthenticated, loading } = useSelector((state) => state.auth)
+
+  const handleLogout = () => {
+    dispatch(logout())
   }
-  return context;
-};
+
+  return {
+    isAuthenticated,
+    isLoading: loading,
+    logout: handleLogout,
+  }
+}
