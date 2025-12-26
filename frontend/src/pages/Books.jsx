@@ -4,9 +4,9 @@ import { getAllBooks, createBook, updateBook, deleteBook } from "../api/books";
 import { useAuth } from "../hooks/useAuth";
 import BookList from "../components/books/BookList";
 import BookForm from "../components/books/BookForm";
-import Button from "../src/components/common/Button";
-import Modal from "../src/components/common/Modal";
-import Loading from "../src/components/common/Loading";
+import Button from "../components/common/Button";
+import Modal from "../components/common/Modal";
+import Loading from "../components/common/Loading";
 import "./Books.css";
 
 const Books = () => {

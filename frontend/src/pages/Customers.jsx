@@ -1,7 +1,7 @@
 import { useApi } from "../hooks/useApi";
 import { getAllCustomers } from "../api/customers";
-import CustomerList from "../src/components/customers/CustomerList";
-import Loading from "../src/components/common/Loading";
+import CustomerList from "../components/customers/CustomerList";
+import Loading from "../components/common/Loading";
 
 const Customers = () => {
   const { data: customers, loading, error } = useApi(getAllCustomers);

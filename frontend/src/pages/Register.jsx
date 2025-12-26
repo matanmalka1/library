@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../api/auth";
-import RegisterForm from "../src/components/auth/RegisterForm";
-import Card from "../src/components/common/Card";
+import RegisterForm from "../components/auth/RegisterForm";
+import Card from "../components/common/Card";
 import { handleApiError } from "../utils/helpers";
 import "./Auth.css";
 
