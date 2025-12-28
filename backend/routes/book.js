@@ -8,23 +8,23 @@ export const router = express.Router();
 /* CREATE (with image upload) */
 router.post("/", verifyToken, upload.single("image"), async (req, res) => {
   try {
-    return res.status(201).json(
-      await Book.create({
-        ...req.body,
-        image: req.file?.filename || null,
-      })
-    );
+    const book = await Book.create({
+      ...req.body,
+      image: req.file?.filename || null,
+    });
+    res.status(201).json(book);
   } catch (err) {
-    return res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message });
   }
 });
 
 /* READ ALL */
 router.get("/", async (req, res) => {
   try {
-    return res.json(await Book.findAll());
+    const books = await Book.findAll();
+    res.json(books);
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -32,10 +32,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const book = await Book.findByPk(req.params.id);
-
-    if (!book) {
-      return res.status(404).json({ error: "Book not found" });
-    }
+    if (!book) return res.status(404).json({ error: "Book not found" });
     res.json(book);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -48,17 +45,12 @@ router.put("/:id", verifyToken, async (req, res) => {
     const [updatedCount] = await Book.update(req.body, {
       where: { bookID: req.params.id },
     });
-
-    if (!updatedCount) {
-      return res.status(404).json({ error: "Book not found" });
-    }
-
-    return res.json({ message: "Book updated successfully" });
+    if (!updatedCount) return res.status(404).json({ error: "Book not found" });
+    res.json({ message: "Book updated successfully" });
   } catch (err) {
-    return res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message });
   }
 });
-
 
 /* DELETE */
 router.delete("/:id", verifyToken, async (req, res) => {
@@ -66,13 +58,9 @@ router.delete("/:id", verifyToken, async (req, res) => {
     const deleted = await Book.destroy({
       where: { bookID: req.params.id },
     });
-
-    if (!deleted) {
-      return res.status(404).json({ error: "Book not found" });
-    }
-    return res.json({ message: "Book deleted successfully" });
+    if (!deleted) return res.status(404).json({ error: "Book not found" });
+    res.json({ message: "Book deleted successfully" });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
-

@@ -9,4 +9,5 @@ export const Book = sequelize.define("Book", {
   publishDate: { type: DataTypes.DATE },
   pages: { type: DataTypes.INTEGER },
   genre: { type: DataTypes.STRING },
+  image: { type: DataTypes.STRING, allowNull: true }, 
 });
