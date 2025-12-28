@@ -5,6 +5,8 @@ import { sequelize } from "./db.js";
 import { router as customerRoutes } from "./routes/customer.js";
 import { router as bookRoutes } from "./routes/book.js";
 import { router as authorRoutes } from "./routes/author.js";
+import { router as loanRoutes } from "./routes/loans.js";
+
 dotenv.config();
 const app = express();
 
@@ -16,8 +18,9 @@ app.use("/uploads", express.static("public/uploads"));
 app.use("/customers", customerRoutes);
 app.use("/books", bookRoutes);
 app.use("/authors", authorRoutes);
+app.use("/loans", loanRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 // server
 app.listen(PORT, async () => {

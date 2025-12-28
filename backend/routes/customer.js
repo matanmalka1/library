@@ -63,7 +63,9 @@ router.get("/", verifyToken, async (req, res) => {
 /* GET ONE */
 router.get("/:id", verifyToken, async (req, res) => {
   try {
-    const customer = await Customer.findByPk(req.params.id);
+    const customer = await Customer.findByPk(req.params.id, {
+      attributes: { exclude: ["password"] },
+    });
     if (!customer) {
       return res.status(404).json({ error: "Customer not found" });
     }
