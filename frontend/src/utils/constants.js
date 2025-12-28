@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
   CUSTOMERS: "/customers",
   BOOKS: "/books",
   AUTHORS: "/authors",
+  LOANS: "/loans",
   LOGIN: "/customers/login",
   REGISTER: "/customers/register",
 };

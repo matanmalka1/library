@@ -46,16 +46,28 @@ const Navbar = () => {
           </NavLink>
         </li>
         {isAuthenticated && (
-          <li>
-            <NavLink
-              to="/customers"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Customers
-            </NavLink>
-          </li>
+          <>
+            <li>
+              <NavLink
+                to="/customers"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Customers
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/loans"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Loans
+              </NavLink>
+            </li>
+          </>
         )}
       </ul>
       <div className="nav-auth">

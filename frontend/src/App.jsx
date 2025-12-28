@@ -8,6 +8,7 @@ import Register from "./pages/Register.jsx";
 import Books from "./pages/Books/Books.jsx";
 import Authors from "./pages/Auth/Authors.jsx";
 import Customers from "./pages/Customers.jsx";
+import Loans from "./pages/Loans/Loans.jsx";
 import NotFound from "./pages/NouFound/NotFound.jsx";
 
 function App() {
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Customers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/loans"
+            element={
+              <ProtectedRoute>
+                <Loans />
               </ProtectedRoute>
             }
           />
