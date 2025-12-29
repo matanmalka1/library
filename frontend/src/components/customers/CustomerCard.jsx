@@ -1,6 +1,6 @@
 import Card from "../common/Card/Card.jsx";
 import { getInitials } from "../../utils/helpers.js";
-import "../authors/AuthorCard.css";
+import "../authors/AuthorCard/AuthorCard.css";
 
 const CustomerCard = ({ customer }) => {
   return (

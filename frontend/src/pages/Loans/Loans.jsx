@@ -12,7 +12,7 @@ import LoanList from "../../components/Loans/LoanList.jsx";
 import LoanForm from "../../components/Loans/LoansForm.jsx";
 import Button from "../../components/common/Button/Button.jsx";
 import Modal from "../../components/common/Modal/Modal.jsx";
-import Loading from "../../components/common/Loading/Loading.jsx";
+import DataLoader from "../../components/common/DataLoader/DataLoader.jsx";
 import "../Books/Books.css";
 
 const Loans = () => {
@@ -38,9 +38,6 @@ const Loans = () => {
     }
   };
 
-  if (loading && !loans.length) return <Loading />;
-  if (error) return <div className="error-alert">{error}</div>;
-
   return (
     <div className="books-page">
       <div className="page-header">
@@ -50,11 +47,13 @@ const Loans = () => {
         )}
       </div>
 
-      <LoanList
-        loans={loans}
-        onDelete={handleDelete}
-        canEdit={isAuthenticated}
-      />
+      <DataLoader loading={loading} error={error} data={loans} emptyMessage="No loans found.">
+        <LoanList
+          loans={loans}
+          onDelete={handleDelete}
+          canEdit={isAuthenticated}
+        />
+      </DataLoader>
 
       <Modal
         isOpen={isModalOpen}

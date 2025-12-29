@@ -3,12 +3,19 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Customer } from "../models/Customer.js";
 import { verifyToken } from "../helpers/authMiddleware.js";
+import { validateCustomer } from "../helpers/validation.js";
 
 export const router = express.Router();
 
 /* REGISTER */
 router.post("/register", async (req, res) => {
   try {
+    // Validate input
+    const errors = validateCustomer(req.body);
+    if (errors.length > 0) {
+      return res.status(400).json({ error: errors.join(", ") });
+    }
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const customer = await Customer.create({
@@ -26,15 +33,19 @@ router.post("/register", async (req, res) => {
 /* LOGIN */
 router.post("/login", async (req, res) => {
   try {
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
     const customer = await Customer.findOne({
       where: { email: req.body.email },
     });
     if (!customer)
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
 
     const isMatch = await bcrypt.compare(req.body.password, customer.password);
     if (!isMatch)
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
 
     const token = jwt.sign(
       { id: customer.customerID, email: customer.email },
@@ -70,15 +81,21 @@ router.get("/:id", verifyToken, async (req, res) => {
       return res.status(404).json({ error: "Customer not found" });
     }
 
-    res.json(customer);
+    return res.json(customer);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 });
 
 /* UPDATE */
 router.put("/:id", verifyToken, async (req, res) => {
   try {
+    // Validate input for updates
+    const errors = validateCustomer(req.body, true);
+    if (errors.length > 0) {
+      return res.status(400).json({ error: errors.join(", ") });
+    }
+
     const [updatedCount] = await Customer.update(req.body, {
       where: { customerID: req.params.id },
     });

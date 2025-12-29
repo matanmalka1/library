@@ -11,7 +11,7 @@ import BookList from '../../components/books/BookList.jsx'
 import BookForm from '../../components/books/BookForm.jsx'
 import Button from '../../components/common/Button/Button.jsx'
 import Modal from '../../components/common/Modal/Modal.jsx'
-import Loading from '../../components/common/Loading/Loading.jsx'
+import DataLoader from '../../components/common/DataLoader/DataLoader.jsx'
 import './Books.css'
 
 const Books = () => {
@@ -45,9 +45,6 @@ const Books = () => {
     setEditingBook(book)
   }
 
-  if (loading && !books.length) return <Loading />
-  if (error) return <div className="error-alert">{error}</div>
-
   return (
     <div className="books-page">
       <div className="page-header">
@@ -57,12 +54,14 @@ const Books = () => {
         )}
       </div>
 
-      <BookList
-        books={books}
-        onEdit={openEditModal}
-        onDelete={handleDelete}
-        canEdit={isAuthenticated}
-      />
+      <DataLoader loading={loading} error={error} data={books} emptyMessage="No books found.">
+        <BookList
+          books={books}
+          onEdit={openEditModal}
+          onDelete={handleDelete}
+          canEdit={isAuthenticated}
+        />
+      </DataLoader>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Add New Book">
         <BookForm onSubmit={handleCreate} onCancel={() => setIsModalOpen(false)} />

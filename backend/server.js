@@ -8,6 +8,14 @@ import { router as authorRoutes } from "./routes/author.js";
 import { router as loanRoutes } from "./routes/loans.js";
 
 dotenv.config();
+
+// Validate required environment variables
+if (!process.env.JWT_SECRET) {
+  console.error("FATAL ERROR: JWT_SECRET environment variable is required");
+  console.error("Please add JWT_SECRET=your_secret_key to your .env file");
+  process.exit(1);
+}
+
 const app = express();
 
 app.use(cors());
@@ -24,6 +32,11 @@ const PORT = process.env.PORT || 5000;
 
 // server
 app.listen(PORT, async () => {
-  await sequelize.sync();
-  console.log(`Server running on http://localhost:${PORT}`);
+  try {
+    await sequelize.sync();
+    console.log(`Server running on http://localhost:${PORT}`);
+  } catch (error) {
+    console.error("Failed to sync database:", error);
+    process.exit(1);
+  }
 });

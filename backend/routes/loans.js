@@ -18,9 +18,9 @@ router.post("/", verifyToken, async (req, res) => {
     }
 
     const loan = await Loans.create({ bookID, customerID });
-    res.status(201).json(loan);
+    return res.status(201).json(loan);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    return res.status(400).json({ error: err.message });
   }
 });
 
@@ -39,9 +39,9 @@ router.get("/", verifyToken, async (req, res) => {
         },
       ],
     });
-    res.json(loans);
+    return res.json(loans);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 });
 
@@ -65,9 +65,9 @@ router.get("/:id", verifyToken, async (req, res) => {
       return res.status(404).json({ error: "Loan not found" });
     }
 
-    res.json(loan);
+    return res.json(loan);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 });
 
@@ -82,8 +82,8 @@ router.delete("/:id", verifyToken, async (req, res) => {
       return res.status(404).json({ error: "Loan not found" });
     }
 
-    res.json({ message: "Loan deleted successfully" });
+    return res.json({ message: "Loan deleted successfully" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 });

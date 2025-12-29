@@ -9,7 +9,7 @@ import Books from "./pages/Books/Books.jsx";
 import Authors from "./pages/Auth/Authors.jsx";
 import Customers from "./pages/Customers.jsx";
 import Loans from "./pages/Loans/Loans.jsx";
-import NotFound from "./pages/NouFound/NotFound.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
 function App() {
   return (

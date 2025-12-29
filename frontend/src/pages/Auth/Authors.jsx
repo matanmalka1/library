@@ -11,7 +11,7 @@ import AuthorList from "../../components/authors/AuthorList.jsx";
 import AuthorForm from "../../components/authors/AuthorForm.jsx";
 import Button from "../../components/common/Button/Button.jsx";
 import Modal from "../../components/common/Modal/Modal.jsx";
-import Loading from "../../components/common/Loading/Loading.jsx";
+import DataLoader from "../../components/common/DataLoader/DataLoader.jsx";
 
 const Authors = () => {
   const dispatch = useDispatch();
@@ -44,9 +44,6 @@ const Authors = () => {
     }
   };
 
-  if (loading && !authors.length) return <Loading />;
-  if (error) return <div className="error-alert">{error}</div>;
-
   return (
     <div className="books-page">
       <div className="page-header">
@@ -56,12 +53,19 @@ const Authors = () => {
         )}
       </div>
 
-      <AuthorList
-        authors={authors}
-        onEdit={setEditingAuthor}
-        onDelete={handleDelete}
-        canEdit={isAuthenticated}
-      />
+      <DataLoader
+        loading={loading}
+        error={error}
+        data={authors}
+        emptyMessage="No authors found."
+      >
+        <AuthorList
+          authors={authors}
+          onEdit={setEditingAuthor}
+          onDelete={handleDelete}
+          canEdit={isAuthenticated}
+        />
+      </DataLoader>
 
       <Modal
         isOpen={isModalOpen}
