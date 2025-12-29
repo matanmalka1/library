@@ -5,7 +5,7 @@ A modern React frontend for the Library Management System built with **React 19*
 ## 🚀 Features
 
 - JWT Authentication (Login/Register)
-- Browse Books, Authors, and Customers
+- Browse Books, Authors, Customers, and Loans
 - CRUD Operations (Create, Read, Update, Delete)
 - Protected Routes
 - Responsive Design
@@ -98,11 +98,12 @@ src/
 - **Books** (`/books`) - Browse and manage books
 - **Authors** (`/authors`) - Browse and manage authors
 - **Customers** (`/customers`) - View customers (protected)
+- **Loans** (`/loans`) - Manage loans (protected)
+- **Not Found** (`*`) - 404 page
 
 ## 🎨 Component Guidelines
 
 - **Functional Components** with hooks
-- **Prop validation** with default values
 - **Clean separation** of concerns
 - **Reusable UI** components in `components/common/`
 - **Page-specific** components organized by feature
@@ -116,6 +117,7 @@ The frontend connects to the backend API at `http://localhost:5000`:
 - `GET /books` - Get all books
 - `GET /authors` - Get all authors
 - `GET /customers` - Get all customers (protected)
+- `GET /loans` - Get all loans (protected)
 
 ## 👨‍💻 Author
 

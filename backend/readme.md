@@ -31,14 +31,14 @@ backend/
 ├── package.json
 ├── package-lock.json
 ├── .gitignore
-├── README.md
+├── readme.md
 │
 ├── models/
 │ ├── Customer.js
 │ ├── Book.js
 │ ├── Author.js
 │ ├── Loans.js
-│ └── Associations.js
+│ └── associations.js
 │
 ├── routes/
 │ ├── customer.js
@@ -48,7 +48,8 @@ backend/
 │
 ├── helpers/
 │ ├── authMiddleware.js
-│ └── multer.js
+│ ├── multer.js
+│ └── validation.js
 │
 ├── public/
 │ └── uploads/
@@ -60,6 +61,7 @@ backend/
 Create a `.env` file in the project root:
 PORT=5000
 JWT_SECRET=yourSecretKey
+JWT_SECRET is required at startup.
 
 ---
 
@@ -85,9 +87,9 @@ http://localhost:5000
 JWT-based authentication is used for protected routes.
 
 Register
-POST /api/customers/register
+POST /customers/register
 Login
-POST /api/customers/login
+POST /customers/login
 Response
 {
 "token": "JWT_TOKEN_HERE"
@@ -98,26 +100,26 @@ Authorization: Bearer <TOKEN>
 📚 API Endpoints
 👤 Customers
 Method Endpoint Description
-POST /api/customers/register Register customer
-POST /api/customers/login Login
-GET /api/customers Get all customers
-GET /api/customers/:id Get one
-PUT /api/customers/:id Update
-DELETE /api/customers/:id Delete
+POST /customers/register Register customer
+POST /customers/login Login
+GET /customers Get all customers
+GET /customers/:id Get one
+PUT /customers/:id Update
+DELETE /customers/:id Delete
 
 ✍️ Authors
 Method Endpoint Description
-POST /api/authors Create author
-GET /api/authors Get all
-PUT /api/authors/:id Update
-DELETE /api/authors/:id Delete
+POST /authors Create author
+GET /authors Get all
+PUT /authors/:id Update
+DELETE /authors/:id Delete
 📖 Books
 Method Endpoint Description
-POST /api/books Create book (with image)
-GET /api/books Get all
-GET /api/books/:id Get one
-PUT /api/books/:id Update
-DELETE /api/books/:id Delete
+POST /books Create book (with image)
+GET /books Get all
+GET /books/:id Get one
+PUT /books/:id Update
+DELETE /books/:id Delete
 
 📌 Image Upload
 
@@ -127,9 +129,9 @@ Field name: image
 
 🔄 Loans
 Method Endpoint Description
-POST /api/loans Create loan
-GET /api/loans Get all loans
-DELETE /api/loans/:id Delete loan
+POST /loans Create loan
+GET /loans Get all loans
+DELETE /loans/:id Delete loan
 🗄️ Database
 
 SQLite database auto-created on server start
